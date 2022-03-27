@@ -3,11 +3,26 @@ git clone https://github.com/gbaptista/temp-macro-issue.git
 
 cd temp-macro-issue
 
-git clone https://gitlab.com/andreyorst/fennel-cljlib shared-libs/cljlib
+git clone \
+  https://gitlab.com/andreyorst/fennel-cljlib \
+  --branch relative-require-shenanigans \
+  shared-libs/cljlib
 
 # It works:
-CURRENT_FOLDER=$(pwd) fennel my-project/works.fnl
+PWD=$(pwd) fennel my-project/works.fnl
 
-# Error:
-CURRENT_FOLDER=$(pwd) fennel my-project/nope.fnl
+# Fixed
+PWD=$(pwd) fennel my-project/fixed.fnl
+
+# Error
+PWD=$(pwd) fennel my-project/error.fnl
+
+# It works:
+fnx my-project/fnx/cli.fnl
+
+# It works:
+fnx my-project/fnx/boot.fnl
+
+# It fails:
+fennel my-project/fnx/boot.fnl
 ```

@@ -10,10 +10,12 @@
 
 (set fennel.macro-path
      (..
-       pwd "/shared-libs/cljlib/init-macros.fnl;"
+       pwd "/shared-libs/?/init-macros.fnl;"
+       ; current-folder "/shared-libs/?.fnl;"
        fennel.macro-path))
 
 (local clj (require :cljlib))
+(import-macros cljm :cljlib)
 
 (print (fennel.view (clj.conj [] 1 2 3 4))) ; => [1 2 3 4]
 
